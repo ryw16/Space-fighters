@@ -1,0 +1,72 @@
+#hero {
+	background-image: url("images/NewHero.gif");
+	width: 35px;
+	height: 58px;
+	position: absolute;
+}
+#background {
+	background-image: url("images/giphy.gif");
+	width: 1680;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+#laser {
+	background: #2baacd;
+	width: 3px;
+	height: 20px;
+	position: absolute;
+}
+#laser2 {
+	background: #2baacd;
+	width: 3px;
+	height: 20px;
+	position: absolute;
+    visibility: hidden;
+}
+
+
+#laser3 {
+	background: #2baacd;
+	width: 3px;
+	height: 20px;
+	position: absolute;
+}
+
+.enemy {
+	background-image: url("images/Enemyship.gif");
+	width: 35px;
+	height: 35px;
+	position: absolute;   
+}
+#score {
+	color: #ffffff;
+	font-size: 18pt;
+	position: absolute;
+	left: 20px;
+	top: 20px;
+}
+#stage {
+	color: #ffffff;
+	font-size: 18pt;
+	position: absolute;
+	left: 150px;
+	top: 20px;
+}
+#gameover {
+	color: #ff0000;
+	font-size: 100px;
+	position: absolute;
+	left: 520;
+	top: 350;
+	visibility: hidden;
+}
+#Restart {
+	color: #ffffff;
+	width: 60px;
+	height: 50px;
+	position: absolute;
+	left: 0;
+	bottom: 400;
+}
