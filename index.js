@@ -56,7 +56,7 @@ function fireRate() {
 
   let laser2Element = document.getElementById("laser2");
   laser2Element.style.height = "200px";
-  laser2.h = 200;
+  laser2.h = 200;  
 
   let laser3Element = document.getElementById("laser3");
   laser3Element.style.height = "200px";
@@ -81,7 +81,7 @@ function restart() {
   laser3 = createSprite("laser3", 0, -120, 2, 50);
   elHero = document.getElementById("hero");
 
-  isGameOver(false);
+  updateGameStatus(false);
 
   removeAllEnemy();
   loop();
@@ -101,8 +101,10 @@ function createSprite(element, x, y, w, h) {
 
 function setPosition(sprite) {
   var e = document.getElementById(sprite.element);
-  e.style.left = sprite.x + "px";
-  e.style.top = sprite.y + "px";
+  if(e){
+    e.style.left = sprite.x + "px";
+    e.style.top = sprite.y + "px";
+  }
 }
 
 function toggleKey(keyCode, isPressed) {
@@ -148,7 +150,7 @@ function ensureBounds(sprite, ignoreY) {
     sprite.y = MAX_HEIGHT - sprite.h - 0;
   }
   if (ignoreY && sprite.y + sprite.h > MAX_HEIGHT) {
-    isGameOver(true);
+    updateGameStatus(true);
   }
 }
 
@@ -201,9 +203,11 @@ function checkCollisions() {
         element = document.getElementById("background");
         element.style.backgroundImage = "url('images/stage2_background.png')";
         element.style.height = "900px";
+        element.style.backgroundRepeat = "no-repeat";
+        element.style.backgroundSize = "cover";
       }
     } else if (intersects(hero, enemies[i])) {
-      isGameOver(true);
+      updateGameStatus(true);
     } else if (enemies[i].y + enemies[i].h >= 940) {
       removeEnemy(i);
       i--;
@@ -220,7 +224,7 @@ function updatePosition() {
   }
 }
 function getRandom(maxSize) {
-  return parseInt(Math.random() * maxSize);
+  return parseInt(Math.random() * maxSize); 
 }
 
 function showSprites() {
@@ -255,13 +259,16 @@ function removeEnemyElement(index) {
   element.parentNode.removeChild(element);
 }
 
-function isGameOver(gameOver) {
+function updateGameStatus(gameOver) {
   let isHeroVisible = gameOver ? "hidden" : "visible";
+  let elementHero = document.getElementById(hero.element);
+  elementHero.style.visibility = isHeroVisible;
 
-  var element = document.getElementById(hero.element);
-  element.style.visibility = isHeroVisible;
-  element = document.getElementById("gameover");
-  element.style.visibility = gameOver;
+  let isGameOverVisible = gameOver ? "visible"  : "hidden" ;
+  let elementGameOver = document.getElementById("gameover");
+  elementGameOver.style.visibility = isGameOverVisible;
+  let elementRestartButton = document.getElementById("Restart");
+  elementRestartButton.style.visibility= isGameOverVisible;
 
   if (gameOver) {
     let gameOverSfx = new Audio("audio/game-over.mp4");
@@ -293,6 +300,7 @@ function addEnemy() {
 }
 
 function loop() {
+
   if (new Date().getTime() - lastLoopRun > 40) {
     updatePosition();
     handleControls();
@@ -310,6 +318,7 @@ function loop() {
   laser2.y -= shootSpeed;
   laser3.y -= shootSpeed;
   shoot();
+
 }
 
 document.onkeydown = function (evt) {

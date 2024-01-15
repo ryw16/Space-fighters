@@ -58,15 +58,23 @@
 	color: #ff0000;
 	font-size: 100px;
 	position: absolute;
-	left: 520;
-	top: 350;
+	left: 35%;
+	top: 40%;
 	visibility: hidden;
 }
 #Restart {
-	color: #ffffff;
-	width: 60px;
+  background-color: #4caf50;
+	width: 120px;
 	height: 50px;
 	position: absolute;
-	left: 0;
-	bottom: 400;
+	left: 50%;
+	top: 60%;
+  visibility: hidden;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#Restart:hover {
+  background-color: #45a049;
 }
